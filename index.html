@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anil’s Food Zone</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div id="app" class="bg-gray-900 text-white">
+        <!-- Login Page -->
+        <div id="login-page" class="min-h-screen flex flex-col items-center justify-center p-4" style="display: none;">
+            <div class="card w-full max-w-md p-6">
+                <div class="flex justify-center items-center mb-6">
+                    <div class="logo-circle">A</div>
+                    <h2 class="text-2xl font-bold">Sign in to your account</h2>
+                </div>
+                <p class="text-center text-gray-400 mb-6">Welcome back to Anil's Food Zone</p>
+                
+                <form id="login-form" class="space-y-4">
+                    <div>
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="your.email@example.com" value="anubhav3131@gmail.com">
+                    </div>
+                    <div>
+                        <div class="flex justify-between">
+                            <label class="form-label">Password</label>
+                            <a href="#" class="text-xs text-yellow-500 hover:text-yellow-400">Forgot your password?</a>
+                        </div>
+                        <input type="password" class="form-input" placeholder="••••••" value="••••••">
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="remember-me" class="mr-2">
+                        <label for="remember-me" class="text-sm">Remember me</label>
+                    </div>
+                    <button type="submit" class="gradient-btn w-full py-2 text-white font-medium rounded-md">Sign in</button>
+                </form>
+                
+                <div class="mt-6 text-center">
+                    <p class="text-sm">Don't have an account? <a href="#" class="text-yellow-500 hover:text-yellow-400" onclick="showSignupPage()">Sign up</a></p>
+                </div>
+                
+                <div class="mt-6">
+                    <div class="flex items-center justify-center">
+                        <span class="text-gray-500 text-sm">Or continue with:</span>
+                    </div>
+                    <div class="mt-4 grid grid-cols-2 gap-3">
+                        <button class="flex justify-center items-center py-2 px-4 border border-gray-600 rounded-md hover:bg-gray-700">
+                            <i class="fab fa-facebook-f mr-2"></i> Facebook
+                        </button>
+                        <button class="flex justify-center items-center py-2 px-4 border border-gray-600 rounded-md hover:bg-gray-700">
+                            <i class="fab fa-google mr-2"></i> Google
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <button class="text-sm text-gray-400 hover:text-gray-300 flex items-center justify-center" onclick="showHomePage()">
+                        <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign Up Page -->
+        <div id="signup-page" class="min-h-screen flex flex-col items-center justify-center p-4" style="display: none;">
+            <div class="card w-full max-w-md p-6">
+                <div class="flex justify-center items-center mb-6">
+                    <div class="logo-circle">A</div>
+                    <h2 class="text-2xl font-bold">Create your account</h2>
+                </div>
+                <p class="text-center text-gray-400 mb-6">Join Anil's Food Zone family</p>
+                
+                <form id="signup-form" class="space-y-4">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="form-label">First Name</label>
+                            <input type="text" class="form-input" placeholder="John">
+                        </div>
+                        <div>
+                            <label class="form-label">Last Name</label>
+                            <input type="text" class="form-input" placeholder="Doe">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-input" placeholder="your.email@example.com">
+                    </div>
+                    <div>
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-input" placeholder="+91 9876543210">
+                    </div>
+                    <div>
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" placeholder="••••••">
+                    </div>
+                    <div>
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" placeholder="••••••">
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="terms" class="mr-2">
+                        <label for="terms" class="text-sm">I agree to the <a href="#" class="text-yellow-500">Terms & Conditions</a></label>
+                    </div>
+                    <button type="submit" class="gradient-btn w-full py-2 text-white font-medium rounded-md">Create Account</button>
+                </form>
+                
+                <div class="mt-6 text-center">
+                    <p class="text-sm">Already have an account? <a href="#" class="text-yellow-500 hover:text-yellow-400" onclick="showLoginPage()">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- My Account Page -->
+        <div id="account-page" class="container mx-auto px-4 py-8" style="display: none;">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4">My <span class="gold-text">Account</span></h1>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Account Sidebar -->
+                <div class="md:w-1/4">
+                    <div class="card p-6">
+                        <div class="text-center mb-6">
+                            <div class="w-20 h-20 bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <i class="fas fa-user text-2xl text-gray-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold">Mr. Anil</h3>
+                            <p class="text-gray-400">Premium Member</p>
+                        </div>
+                        
+                        <nav class="space-y-2">
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700 active" onclick="showAccountSection('profile')">
+                                <i class="fas fa-user mr-3"></i> Profile
+                            </button>
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700" onclick="showAccountSection('orders')">
+                                <i class="fas fa-shopping-bag mr-3"></i> Order History
+                            </button>
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700" onclick="showAccountSection('favorites')">
+                                <i class="fas fa-heart mr-3"></i> Favorites
+                            </button>
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700" onclick="showAccountSection('addresses')">
+                                <i class="fas fa-map-marker-alt mr-3"></i> Addresses
+                            </button>
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700" onclick="showAccountSection('payment')">
+                                <i class="fas fa-credit-card mr-3"></i> Payment Methods
+                            </button>
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700" onclick="showAccountSection('loyalty')">
+                                <i class="fas fa-star mr-3"></i> Loyalty Points
+                            </button>
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700" onclick="showAccountSection('notifications')">
+                                <i class="fas fa-bell mr-3"></i> Notifications
+                            </button>
+                            <button class="account-nav-btn w-full text-left p-3 rounded-lg hover:bg-gray-700" onclick="showAccountSection('reviews')">
+                                <i class="fas fa-star-half-alt mr-3"></i> My Reviews
+                            </button>
+                        </nav>
+                    </div>
+                </div>
+                
+                <!-- Account Content -->
+                <div class="md:w-3/4">
+                    <!-- Profile Section -->
+                    <div id="account-profile" class="account-section">
+                        <div class="card p-6">
+                            <h2 class="text-2xl font-bold mb-6">Profile Information</h2>
+                            <form class="space-y-4">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="form-label">First Name</label>
+                                        <input type="text" class="form-input" value="John">
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Last Name</label>
+                                        <input type="text" class="form-input" value="Doe">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-input" value="john.doe@email.com">
+                                </div>
+                                <div>
+                                    <label class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-input" value="+91 9876543210">
+                                </div>
+                                <div>
+                                    <label class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-input" value="1990-01-01">
+                                </div>
+                                <div>
+                                    <label class="form-label">Dietary Preferences</label>
+                                    <select class="form-input">
+                                        <option>No Restrictions</option>
+                                        <option>Vegetarian</option>
+                                        <option>Vegan</option>
+                                        <option>Gluten-Free</option>
+                                        <option>Halal</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="gradient-btn px-6 py-2 text-white font-medium rounded-md">Update Profile</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Order History Section -->
+                    <div id="account-orders" class="account-section" style="display: none;">
+                        <div class="card p-6">
+                            <h2 class="text-2xl font-bold mb-6">Order History</h2>
+                            <div class="space-y-4">
+                                <div class="border border-gray-700 rounded-lg p-4">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div>
+                                            <h3 class="font-bold">Order #ORD-001</h3>
+                                            <p class="text-gray-400 text-sm">Dec 15, 2024 • 7:30 PM</p>
+                                        </div>
+                                        <span class="food-tag bg-green-500 text-white">Delivered</span>
+                                    </div>
+                                    <div class="space-y-2 mb-3">
+                                        <div class="flex justify-between">
+                                            <span>2x Tonkotsu Ramen</span>
+                                            <span>₹598</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>1x Gyoza</span>
+                                            <span>₹149</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center border-t border-gray-700 pt-3">
+                                        <span class="font-bold">Total: ₹747</span>
+                                        <div class="space-x-2">
+                                            <button class="text-yellow-500 text-sm hover:underline">Reorder</button>
+                                            <button class="text-yellow-500 text-sm hover:underline">Review</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-700 rounded-lg p-4">
+                                    <div class="flex justify-between items-start mb-3">
+                                        <div>
+                                            <h3 class="font-bold">Order #ORD-002</h3>
+                                            <p class="text-gray-400 text-sm">Dec 10, 2024 • 6:15 PM</p>
+                                        </div>
+                                        <span class="food-tag bg-blue-500 text-white">Completed</span>
+                                    </div>
+                                    <div class="space-y-2 mb-3">
+                                        <div class="flex justify-between">
+                                            <span>1x Spicy Miso Ramen</span>
+                                            <span>₹249</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>1x Green Tea</span>
+                                            <span>₹50</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center border-t border-gray-700 pt-3">
+                                        <span class="font-bold">Total: ₹299</span>
+                                        <div class="space-x-2">
+                                            <button class="text-yellow-500 text-sm hover:underline">Reorder</button>
+                                            <button class="text-yellow-500 text-sm hover:underline">Review</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Favorites Section -->
+                    <div id="account-favorites" class="account-section" style="display: none;">
+                        <div class="card p-6">
+                            <h2 class="text-2xl font-bold mb-6">Favorite Items</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="border border-gray-700 rounded-lg p-4">
+                                    <div class="flex">
+                                        <img src="img 2.webp" alt="Tonkotsu Ramen" class="w-20 h-20 object-cover rounded-lg mr-4">
+                                        <div class="flex-1">
+                                            <h3 class="font-bold mb-1">Tonkotsu Ramen</h3>
+                                            <p class="text-gray-400 text-sm mb-2">Rich pork bone broth with chashu...</p>
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">₹299</span>
+                                                <button class="gradient-btn px-3 py-1 text-white text-sm rounded-md">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-700 rounded-lg p-4">
+                                    <div class="flex">
+                                        <img src="img 3.webp" alt="Spicy Miso Ramen" class="w-20 h-20 object-cover rounded-lg mr-4">
+                                        <div class="flex-1">
+                                            <h3 class="font-bold mb-1">Spicy Miso Ramen</h3>
+                                            <p class="text-gray-400 text-sm mb-2">Savory miso broth with chili oil...</p>
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold">₹249</span>
+                                                <button class="gradient-btn px-3 py-1 text-white text-sm rounded-md">Add to Cart</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Loyalty Points Section -->
+                    <div id="account-loyalty" class="account-section" style="display: none;">
+                        <div class="card p-6">
+                            <h2 class="text-2xl font-bold mb-6">Loyalty Points</h2>
+                            <div class="text-center mb-8">
+                                <div class="text-4xl font-bold gold-text mb-2">2,450</div>
+                                <p class="text-gray-400">Available Points</p>
+                                <p class="text-sm text-gray-500 mt-2">Equivalent to ₹245 in rewards</p>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                                <div class="bg-gray-800 p-4 rounded-lg text-center">
+                                    <div class="text-xl font-bold gold-text">500</div>
+                                    <div class="text-sm text-gray-400">Points to Next Tier</div>
+                                </div>
+                                <div class="bg-gray-800 p-4 rounded-lg text-center">
+                                    <div class="text-xl font-bold gold-text">Gold</div>
+                                    <div class="text-sm text-gray-400">Current Tier</div>
+                                </div>
+                                <div class="bg-gray-800 p-4 rounded-lg text-center">
+                                    <div class="text-xl font-bold gold-text">15</div>
+                                    <div class="text-sm text-gray-400">Orders This Month</div>
+                                </div>
+                            </div>
+
+                            <h3 class="text-lg font-bold mb-4">Available Rewards</h3>
+                            <div class="space-y-4">
+                                <div class="border border-gray-700 rounded-lg p-4 flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold">Free Ramen</h4>
+                                        <p class="text-gray-400 text-sm">Get any ramen bowl for free</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="font-bold mb-2">1,000 Points</div>
+                                        <button class="gradient-btn px-4 py-1 text-white text-sm rounded-md">Redeem</button>
+                                    </div>
+                                </div>
+                                <div class="border border-gray-700 rounded-lg p-4 flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-bold">20% Off Next Order</h4>
+                                        <p class="text-gray-400 text-sm">Discount on your next purchase</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="font-bold mb-2">500 Points</div>
+                                        <button class="gradient-btn px-4 py-1 text-white text-sm rounded-md">Redeem</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Site -->
+        <div id="main-site">
+            <!-- Header/Navigation -->
+            <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-40">
+                <div class="container mx-auto px-4 py-4">
+                    <div class="flex justify-between items-center">
+                        <div class="logo">
+                            <div class="logo-circle">A</div>
+                            <span style="color: #f3f4f6;">Anil's Food Zone</span>
+                        </div>
+                        
+                        <nav class="hidden md:flex space-x-8">
+                            <a href="#" class="nav-item active" onclick="showHomePage()">Home</a>
+                            <a href="#" class="nav-item" onclick="showMenuPage()">Menu</a>
+                            <a href="#" class="nav-item" onclick="showAboutPage()">About</a>
+                            <a href="#" class="nav-item" onclick="showLocationPage()">Location</a>
+                            <a href="#" class="nav-item" onclick="showCareersPage()">Careers</a>
+                        </nav>
+                        
+                        <div class="flex items-center space-x-4">
+                            <button onclick="showOrderPage()" class="gradient-btn px-4 py-2 text-white font-medium rounded-md">Order Now</button>
+                            <div class="relative">
+                                <button onclick="showCartPage()" class="text-white hover:text-yellow-500">
+                                    <i class="fas fa-shopping-cart"></i>
+                                    <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                                </button>
+                            </div>
+                            <div class="relative">
+                                <button onclick="toggleUserMenu()" class="text-white hover:text-yellow-500">
+                                    <i class="fas fa-user-circle text-xl"></i>
+                                </button>
+                                <div id="user-menu" class="absolute right-0 top-full mt-2 w-48 bg-gray-800 rounded-lg shadow-lg border border-gray-700" style="display: none;">
+                                    <a href="#" onclick="showAccountPage()" class="block px-4 py-2 hover:bg-gray-700 rounded-t-lg">My Account</a>
+                                    <a href="#" onclick="showLoginPage()" class="block px-4 py-2 hover:bg-gray-700">Sign In</a>
+                                    <a href="#" onclick="showSignupPage()" class="block px-4 py-2 hover:bg-gray-700 rounded-b-lg">Sign Up</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Home Page -->
+            <div id="home-page" class="container mx-auto px-4 py-8">
+                <!-- Hero Section -->
+                <section class="flex flex-col md:flex-row items-center justify-between mb-16">
+                    <div class="text-4xl lg:text-5xl font-bold">
+                       
+                        <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to <span class="gold-text">Anil's<br>Food Zone</span></h1>
+                        <p class="text-gray-400 mb-6 text-lg">Your one-stop destination for authentic, steaming bowls of ramen perfection. Savor the rich broths, handmade noodles, and carefully crafted toppings that bring you the true taste of Japan.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <button onclick="showMenuPage()" class="gradient-btn px-6 py-3 text-white font-medium rounded-md flex items-center justify-center">
+                                <i class="fas fa-utensils mr-2"></i> Explore Menu
+                            </button>
+                           
+                        </div>
+                        
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-3 gap-4 mt-8">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold gold-text">4.8★</div>
+                                <div class="text-sm text-gray-400">Customer Rating</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold gold-text">30min</div>
+                                <div class="text-sm text-gray-400">Avg Delivery</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold gold-text">50+</div>
+                                <div class="text-sm text-gray-400">Menu Items</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <div class="relative">
+                            <img src="img 3.webp" alt="Delicious Ramen Bowl" class="rounded-xl w-100% h-84 object-cover">
+                            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black opacity-30 rounded-xl"></div>
+                            <div class="absolute bottom-4 left-4 text-white">
+                                <div class="bg-black bg-opacity-50 px-3 py-2 rounded-lg">
+                                    <div class="text-sm">Today's Special</div>
+                                    <div class="font-bold">Tonkotsu Ramen ₹249</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Promotions -->
+                <section class="mb-16">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gradient-to-r from-red-900 to-red-800 rounded-xl p-6 text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-2">🔥 Spicy Challenge</h3>
+                                    <p class="mb-4">Finish our Ultra Spicy Ramen in under 10 minutes and get it FREE!</p>
+                                    <button class="bg-white text-red-800 px-4 py-2 rounded-lg font-medium">Accept Challenge</button>
+                                </div>
+                                <div class="text-4xl">🌶️</div>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-green-900 to-green-800 rounded-xl p-6 text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-2">🌱 Healthy Week</h3>
+                                    <p class="mb-4">20% off all vegetarian ramen bowls this week. Healthy never tasted so good!</p>
+                                    <button class="bg-white text-green-800 px-4 py-2 rounded-lg font-medium">Order Healthy</button>
+                                </div>
+                                <div class="text-4xl">🥗</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Popular Dishes -->
+                <section class="mb-16">
+                    <div class="flex justify-between items-center mb-8">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-2">Our <span class="gold-text">Popular Dishes</span></h2>
+                            <p class="text-gray-400">Explore our most loved ramen bowls, carefully crafted with authentic flavors and fresh ingredients.</p>
+                        </div>
+                        <button onclick="showMenuPage()" class="text-yellow-500 hover:text-yellow-400 flex items-center">
+                            View All <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="card overflow-hidden group hover:scale-105 transition-transform duration-300">
+                            <div class="relative">
+                                <img src="img 2.webp" alt="Tonkotsu Ramen" class="w-full h-48 object-cover">
+                                <div class="absolute top-2 left-2">
+                                    <span class="food-tag bg-red-500 text-white">🔥 Bestseller</span>
+                                </div>
+                                <div class="absolute top-2 right-2">
+                                    <button class="bg-black bg-opacity-50 p-2 rounded-full text-white hover:text-red-500">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-medium">Tonkotsu Ramen</h3>
+                                    <div class="rating-stars text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <span class="text-gray-400 ml-1">(124)</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-400 text-sm mb-4">Rich pork bone broth simmered for 24 hours with chashu pork, soft-boiled egg, green onions, and nori sheets.</p>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="font-bold text-lg">₹ 459</span>
+                                        <span class="text-gray-500 line-through text-sm ml-2">₹ 499</span>
+                                    </div>
+                                    <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md" onclick="addToCart('Tonkotsu Ramen', 459)">
+                                        <i class="fas fa-plus mr-1"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card overflow-hidden group hover:scale-105 transition-transform duration-300">
+                            <div class="relative">
+                                <img src="pic 5.jpg" alt="Spicy Miso Ramen" class="w-full h-48 object-cover">
+                                <div class="absolute top-2 left-2">
+                                    <span class="food-tag bg-orange-500 text-white">🌶️ Spicy</span>
+                                </div>
+                                <div class="absolute top-2 right-2">
+                                    <button class="bg-black bg-opacity-50 p-2 rounded-full text-white hover:text-red-500">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-medium">Spicy Miso Ramen</h3>
+                                    <div class="rating-stars text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                        <span class="text-gray-400 ml-1">(98)</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-400 text-sm mb-4">Spicy miso-based broth with ground pork, bean sprouts, corn, ajitama egg, and chili oil.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-lg">₹ 399</span>
+                                    <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md" onclick="addToCart('Spicy Miso Ramen', 399)">
+                                        <i class="fas fa-plus mr-1"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card overflow-hidden group hover:scale-105 transition-transform duration-300">
+                            <div class="relative">
+                                <img src="pic 6.jpg" alt="Vegetable Shoyu" class="w-full h-48 object-cover">
+                                <div class="absolute top-2 left-2">
+                                    <span class="food-tag bg-green-500 text-white">🌱 Vegan</span>
+                                </div>
+                                <div class="absolute top-2 right-2">
+                                    <button class="bg-black bg-opacity-50 p-2 rounded-full text-white hover:text-red-500">
+                                        <i class="fas fa-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="text-xl font-medium">Vegetable Shoyu</h3>
+                                    <div class="rating-stars text-sm">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star-half-alt"></i>
+                                        <span class="text-gray-400 ml-1">(87)</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-400 text-sm mb-4">Soy sauce-based vegetable broth with seasonal vegetables, tofu, mushrooms, and bamboo shoots.</p>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-lg">₹ 349</span>
+                                    <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md" onclick="addToCart('Vegetable Shoyu', 349)">
+                                        <i class="fas fa-plus mr-1"></i> Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Chef's Special Section -->
+                <section class="mb-16">
+                    <div class="bg-gray-800 rounded-xl p-8">
+                        <div class="text-center mb-8">
+                            <h2 class="text-3xl font-bold mb-4">Chef's <span class="gold-text">Special Collection</span></h2>
+                            <p class="text-gray-400 max-w-2xl mx-auto">Discover our chef's handpicked selection of premium ramen bowls, featuring unique recipes passed down through generations.</p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <div class="space-y-6">
+                                    <div class="flex items-start space-x-4">
+                                        <div class="bg-yellow-500 rounded-full p-3 flex-shrink-0">
+                                            <i class="fas fa-crown text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold mb-2">Premium Wagyu Ramen</h3>
+                                            <p class="text-gray-400">Featuring A5 Wagyu beef in our signature tonkotsu broth</p>
+                                            <span class="text-yellow-500 font-bold">₹ 899</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start space-x-4">
+                                        <div class="bg-purple-500 rounded-full p-3 flex-shrink-0">
+                                            <i class="fas fa-gem text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold mb-2">Black Garlic Miso</h3>
+                                            <p class="text-gray-400">Rich black garlic miso with truffle oil and premium toppings</p>
+                                            <span class="text-yellow-500 font-bold">₹ 699</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start space-x-4">
+                                        <div class="bg-red-500 rounded-full p-3 flex-shrink-0">
+                                            <i class="fas fa-fire text-white"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-xl font-bold mb-2">Dragon's Breath Ramen</h3>
+                                            <p class="text-gray-400">Our spiciest creation with ghost pepper and habanero</p>
+                                            <span class="text-yellow-500 font-bold">₹ 549</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button class="gradient-btn px-6 py-3 text-white font-medium rounded-md mt-6">
+                                    View Chef's Collection
+                                </button>
+                            </div>
+                            
+                            <div class="relative">
+                                <img src="img 6.webp" alt="Chef's Special" class="rounded-xl w-full h-49 object-cover">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent rounded-xl"></div>
+                                <div class="absolute bottom-6 left-6 text-white">
+                                    <div class="text-sm opacity-90">Meet our Head Chef</div>
+                                    <div class="text-2xl font-bold">Master Yamamoto</div>
+                                    <div class="text-sm opacity-75">25+ years of ramen mastery</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Testimonials with Video Reviews -->
+                <section class="mb-16">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl font-bold mb-4">What Our <span class="gold-text">Customers Say</span></h2>
+                        <p class="text-gray-400 max-w-2xl mx-auto">Don't just take our word for it. See what our customers have to say about their Anil's Food Zone experience.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="card p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex items-center mb-4">
+                                <img src="per 1.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <div class="font-bold">Emily Chen</div>
+                                    <div class="text-sm text-gray-400">Food Blogger</div>
+                                </div>
+                                <div class="ml-auto">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">"The tonkotsu ramen here is absolutely phenomenal! The broth is so rich and well-balanced. The chashu pork melts in your mouth. This is now my go-to ramen spot!"</p>
+                            <div class="flex justify-between items-center text-sm text-gray-500">
+                                <span>2 days ago</span>
+                                <div class="flex items-center">
+                                    <i class="fas fa-thumbs-up mr-1"></i>
+                                    <span>47 likes</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex items-center mb-4">
+                                <img src="per 2.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <div class="font-bold">James Wilson</div>
+                                    <div class="text-sm text-gray-400">Regular Customer</div>
+                                </div>
+                                <div class="ml-auto">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">"Truly authentic Japanese ramen! The noodles have the perfect consistency and the ajitama eggs are the best I've had outside of Japan. Service is excellent too!"</p>
+                            <div class="flex justify-between items-center text-sm text-gray-500">
+                                <span>1 week ago</span>
+                                <div class="flex items-center">
+                                    <i class="fas fa-thumbs-up mr-1"></i>
+                                    <span>32 likes</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="card p-6 hover:shadow-xl transition-shadow duration-300">
+                            <div class="flex items-center mb-4">
+                                <img src="per 3.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                                <div>
+                                    <div class="font-bold">Sophia Martinez</div>
+                                    <div class="text-sm text-gray-400">Vegetarian</div>
+                                </div>
+                                <div class="ml-auto">
+                                    <div class="rating-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 mb-4">"Amazing vegetarian options! The vegetable shoyu is outstanding and they have great choices for plant-based diets. The atmosphere is cozy and staff is super friendly!"</p>
+                            <div class="flex justify-between items-center text-sm text-gray-500">
+                                <span>3 days ago</span>
+                                <div class="flex items-center">
+                                    <i class="fas fa-thumbs-up mr-1"></i>
+                                    <span>23 likes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mt-8">
+                        <button class="text-yellow-500 hover:text-yellow-400 flex items-center justify-center mx-auto">
+                            <i class="fas fa-play-circle mr-2"></i> Watch Video Reviews
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Newsletter & Social -->
+                <section class="mb-16">
+                    <div class="bg-gradient-to-r from-yellow-900 to-orange-900 rounded-xl p-8 text-center">
+                        <h2 class="text-3xl font-bold mb-4">Stay Connected</h2>
+                        <p class="text-gray-300 mb-6 max-w-2xl mx-auto">Be the first to know about new menu items, special events, and exclusive offers. Join our ramen-loving community!</p>
+                        
+                        <div class="flex flex-col sm:flex-row max-w-md mx-auto mb-6">
+                            <input type="email" class="form-input rounded-r-none sm:rounded-r-none rounded-b-none sm:rounded-b-md flex-1" placeholder="Enter your email address">
+                            <button class="gradient-btn px-6 py-3 text-white font-medium rounded-l-none sm:rounded-l-none rounded-t-none sm:rounded-t-md">
+                                Subscribe
+                            </button>
+                        </div>
+                        
+                        <div class="flex justify-center space-x-6">
+                            <a href="#" class="text-white hover:text-yellow-300 text-2xl">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-yellow-300 text-2xl">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-yellow-300 text-2xl">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-yellow-300 text-2xl">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="text-white hover:text-yellow-300 text-2xl">
+                                <i class="fab fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- About Page -->
+            <div id="about-page" class="container mx-auto px-4 py-8" style="display: none;">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold mb-4">About <span class="gold-text">Anil's Food Zone</span></h1>
+                    <p class="text-gray-400 text-lg max-w-3xl mx-auto">Discover the story behind our passion for authentic ramen and our commitment to bringing you the finest Japanese dining experience.</p>
+                </div>
+
+                <!-- Our Story -->
+                <section class="mb-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 class="text-3xl font-bold mb-6">Our <span class="gold-text">Story</span></h2>
+                            <div class="space-y-4 text-gray-300">
+                                <p>Founded in 2012 by Chef Anil Kumar, Anil's Food Zone began as a small dream to bring authentic Japanese ramen culture to India. After spending 8 years training under master ramen chefs in Tokyo, Chef Anil returned with a mission to create the perfect bowl of ramen.</p>
+                                <p>What started as a humble 12-seat restaurant has grown into a beloved culinary destination, but our commitment to quality and authenticity remains unchanged. Every bowl is still prepared with the same attention to detail and passion that Chef Anil learned in the bustling ramen shops of Shibuya.</p>
+                                <p>Today, we're proud to serve thousands of ramen enthusiasts while maintaining our core values: fresh ingredients, traditional techniques, and warm hospitality that makes every visit feel like coming home.</p>
+                            </div>
+                        </div>
+                       <div class="flex overflow-x-auto gap-4 py-4">
+                            <img src="img 7.webp" alt="Restaurant Interior" class="rounded-lg h-48 flex-shrink-0">
+                            <img src="img 5.jpg" alt="Chef Preparing Ramen" class="rounded-lg h-48 flex-shrink-0">
+                            <img src="img 6.webp" alt="Fresh Ingredients" class="rounded-lg h-48 flex-shrink-0">
+                            <img src="pic 8.jpeg" alt="Happy Customers" class="rounded-lg h-48 flex-shrink-0">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Our Values -->
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12">Our <span class="gold-text">Values</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="card p-8 text-center">
+                            <div class="bg-yellow-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-heart text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Authenticity</h3>
+                            <p class="text-gray-400">We stay true to traditional Japanese ramen-making techniques while respecting local tastes and preferences.</p>
+                        </div>
+                        <div class="card p-8 text-center">
+                            <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-leaf text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Quality</h3>
+                            <p class="text-gray-400">Only the finest, freshest ingredients make it into our bowls. We source locally when possible and import specialty items from Japan.</p>
+                        </div>
+                        <div class="card p-8 text-center">
+                            <div class="bg-blue-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-4">Community</h3>
+                            <p class="text-gray-400">We're more than a restaurant - we're a gathering place for food lovers, families, and friends to create lasting memories.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Meet Our Team -->
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12">Meet Our <span class="gold-text">Team</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div class="card p-6 text-center">
+                            <img src="chef.jpg" alt="Chef Anil" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="text-xl font-bold mb-2">Chef Anil Kumar</h3>
+                            <p class="text-yellow-500 mb-2">Founder & Head Chef</p>
+                            <p class="text-gray-400 text-sm">25+ years of culinary excellence, trained in Tokyo's finest ramen shops.</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <img src="chef 1.png" alt="Sous Chef" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="text-xl font-bold mb-2">Kenji Tanaka</h3>
+                            <p class="text-yellow-500 mb-2">Sous Chef</p>
+                            <p class="text-gray-400 text-sm">Specialist in traditional Japanese broth preparation and noodle making.</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <img src="per 1.jpg" alt="Manager" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="text-xl font-bold mb-2">Priya Sharma</h3>
+                            <p class="text-yellow-500 mb-2">Restaurant Manager</p>
+                            <p class="text-gray-400 text-sm">Ensuring every guest has an exceptional dining experience since 2015.</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <img src="chef 3.jpg" alt="Nutritionist" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <h3 class="text-xl font-bold mb-2">Dr. Sarah Lee</h3>
+                            <p class="text-yellow-500 mb-2">Nutritionist</p>
+                            <p class="text-gray-400 text-sm">Developing healthy menu options and ensuring nutritional balance.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Awards & Recognition -->
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12">Awards & <span class="gold-text">Recognition</span></h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div class="card p-6 text-center">
+                            <div class="text-4xl mb-4">🏆</div>
+                            <h3 class="font-bold mb-2">Best Ramen 2024</h3>
+                            <p class="text-gray-400 text-sm">Hyderabad Food Awards</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <div class="text-4xl mb-4">⭐</div>
+                            <h3 class="font-bold mb-2">5-Star Rating</h3>
+                            <p class="text-gray-400 text-sm">Zomato Excellence</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <div class="text-4xl mb-4">🥇</div>
+                            <h3 class="font-bold mb-2">People's Choice</h3>
+                            <p class="text-gray-400 text-sm">Indian Ramen Festival 2023</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <div class="text-4xl mb-4">🌟</div>
+                            <h3 class="font-bold mb-2">Rising Star</h3>
+                            <p class="text-gray-400 text-sm">Asian Cuisine Awards 2022</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Location Page -->
+            <div id="location-page" class="container mx-auto px-4 py-8" style="display: none;">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold mb-4">Visit <span class="gold-text">Our Locations</span></h1>
+                    <p class="text-gray-400 text-lg">Find us at these convenient locations across Hyderabad</p>
+                </div>
+
+                <!-- Main Location -->
+                <section class="mb-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div>
+                            <h2 class="text-2xl font-bold mb-6">🏪 Main Restaurant - Uppal</h2>
+                            <div class="card p-6">
+                                <div class="space-y-4">
+                                    <div class="flex items-start">
+                                        <i class="fas fa-map-marker-alt text-yellow-500 mt-1 mr-4"></i>
+                                        <div>
+                                            <h3 class="font-bold mb-1">Address</h3>
+                                            <p class="text-gray-400">123 Main Street, Uppal<br>Hyderabad, Telangana 500039</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <i class="fas fa-clock text-yellow-500 mt-1 mr-4"></i>
+                                        <div>
+                                            <h3 class="font-bold mb-1">Hours</h3>
+                                            <div class="text-gray-400 space-y-1">
+                                                <div>Monday - Friday: 11:00 AM - 10:00 PM</div>
+                                                <div>Saturday - Sunday: 12:00 PM - 11:00 PM</div>
+                                                <div class="text-green-400">🟢 Open Now</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <i class="fas fa-phone text-yellow-500 mt-1 mr-4"></i>
+                                        <div>
+                                            <h3 class="font-bold mb-1">Contact</h3>
+                                            <p class="text-gray-400">Phone: (+91) 9878685848<br>Email: uppal@anilfoodzone.com</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-start">
+                                        <i class="fas fa-car text-yellow-500 mt-1 mr-4"></i>
+                                        <div>
+                                            <h3 class="font-bold mb-1">Facilities</h3>
+                                            <div class="flex flex-wrap gap-2 mt-2">
+                                                <span class="food-tag bg-blue-500 text-white">Free Parking</span>
+                                                <span class="food-tag bg-green-500 text-white">WiFi</span>
+                                                <span class="food-tag bg-purple-500 text-white">AC</span>
+                                                <span class="food-tag bg-orange-500 text-white">Takeaway</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex space-x-4 mt-6">
+                                    <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md flex items-center">
+                                        <i class="fas fa-directions mr-2"></i> Get Directions
+                                    </button>
+                                    <button class="border border-gray-600 px-4 py-2 text-white font-medium rounded-md hover:bg-gray-700 flex items-center">
+                                        <i class="fas fa-phone mr-2"></i> Call Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            
+                            <div class="flex overflow-x-auto gap-4 py-4">
+                                <img src="img 7.webp" alt="Restaurant Exterior" class="rounded-lg h-48 flex-shrink-0">
+                                <img src="img 5.jpg" alt="Kitchen View" class="rounded-lg h-48 flex-shrink-0">
+                                <img src="pic 6.jpg" alt="Dining Area" class="rounded-lg h-48 flex-shrink-0">
+                                <img src="pic 8.jpeg" alt="Happy Customers" class="rounded-lg h-48 flex-shrink-0">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Other Locations -->
+                <section class="mb-16">
+                    <h2 class="text-2xl font-bold mb-8">Other Locations</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="card p-6">
+                            <h3 class="text-xl font-bold mb-4">🏢 Uppal Branch</h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-map-marker-alt text-yellow-500 mr-3"></i>
+                                    <span class="text-gray-400">A 104, Nagol, Hyderabad</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock text-yellow-500 mr-3"></i>
+                                    <span class="text-gray-400">10:00 AM - 11:00 PM (Daily)</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-phone text-yellow-500 mr-3"></i>
+                                    <span class="text-gray-400">(+91) 93471XXXXX</span>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mt-3">
+                                    <span class="food-tag bg-blue-500 text-white">Mall Location</span>
+                                    <span class="food-tag bg-green-500 text-white">Food Court</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                       
+                    </div>
+                </section>
+
+                <!-- Delivery Areas -->
+                <section class="mb-16">
+                    <h2 class="text-2xl font-bold mb-8">Delivery Areas</h2>
+                    <div class="card p-8">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <h3 class="text-lg font-bold mb-4 text-green-400">🚚 Free Delivery (Within 5km)</h3>
+                                <ul class="space-y-2 text-gray-400">
+                                    <li>• Uppal</li>
+                                    <li>• Boduppal</li>
+                                    <li>• Nacharam</li>
+                                    <li>• Habsiguda</li>
+                                    <li>• Nagole</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-4 text-yellow-400">🚛 Standard Delivery (₹29)</h3>
+                                <ul class="space-y-2 text-gray-400">
+                                    <li>• Secunderabad</li>
+                                    <li>• NGRI</li>
+                                    <li>• Gachibowli</li>
+                                    <li>• LB Nagar</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-4 text-blue-400">🛵 Express Delivery (₹49)</h3>
+                                <ul class="space-y-2 text-gray-400">
+                                    <li>• Ameerpet</li>
+                                    <li>• Koti</li>
+                                    <li>• Begumpet</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center mt-8">
+                            <p class="text-gray-400 mb-4">Don't see your area? We're expanding! Check if we deliver to you:</p>
+                            <div class="flex max-w-md mx-auto">
+                                <input type="text" class="form-input rounded-r-none flex-1" placeholder="Enter your pincode">
+                                <button class="gradient-btn px-6 py-3 text-white font-medium rounded-l-none">Check</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Careers Page -->
+            <div id="careers-page" class="container mx-auto px-4 py-8" style="display: none;">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold mb-4">Join Our <span class="gold-text">Team</span></h1>
+                    <p class="text-gray-400 text-lg max-w-3xl mx-auto">Be part of our growing family and help us bring authentic ramen experiences to food lovers across the city.</p>
+                </div>
+
+                <!-- Why Work With Us -->
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12">Why Work With <span class="gold-text">Us?</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="card p-6 text-center">
+                            <div class="bg-yellow-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Growth & Learning</h3>
+                            <p class="text-gray-400">Continuous training programs, skill development workshops, and career advancement opportunities.</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <div class="bg-green-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-heart text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Great Benefits</h3>
+                            <p class="text-gray-400">Competitive salary, health insurance, meal allowances, and performance bonuses.</p>
+                        </div>
+                        <div class="card p-6 text-center">
+                            <div class="bg-blue-500 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-users text-white text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3">Team Culture</h3>
+                            <p class="text-gray-400">Collaborative environment, team events, and a supportive work culture that values everyone.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Open Positions -->
+                <section class="mb-16">
+                    <h2 class="text-3xl font-bold text-center mb-12">Open <span class="gold-text">Positions</span></h2>
+                    <div class="space-y-6">
+                        <div class="card p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Server / Waiter</h3>
+                                    <div class="flex flex-wrap gap-2 mb-3">
+                                        <span class="food-tag bg-green-500 text-white">Full-time</span>
+                                        <span class="food-tag bg-yellow-500 text-white">Entry Level</span>
+                                        <span class="food-tag bg-blue-500 text-white">Customer Facing</span>
+                                    </div>
+                                    <p class="text-gray-400 mb-3">Provide excellent customer service, take orders, and ensure guest satisfaction. Training provided for enthusiastic candidates.</p>
+                                    <div class="text-sm text-gray-500">
+                                        <i class="fas fa-map-marker-alt mr-1"></i> All Locations
+                                        <span class="mx-2">•</span>
+                                        <i class="fas fa-rupee-sign mr-1"></i> ₹2.5-4 LPA
+                                    </div>
+                                </div>
+                                <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md">Apply Now</button>
+                            </div>
+                        </div>
+
+                        <div class="card p-6">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold mb-2">Delivery Partner</h3>
+                                    <div class="flex flex-wrap gap-2 mb-3">
+                                        <span class="food-tag bg-blue-500 text-white">Part-time Available</span>
+                                        <span class="food-tag bg-green-500 text-white">Flexible Hours</span>
+                                        <span class="food-tag bg-orange-500 text-white">Own Vehicle</span>
+                                    </div>
+                                    <p class="text-gray-400 mb-3">Join our delivery fleet and earn competitive rates with flexible working hours. Must have own two-wheeler and valid license.</p>
+                                    <div class="text-sm text-gray-500">
+                                        <i class="fas fa-map-marker-alt mr-1"></i> Hyderabad Metro
+                                        <span class="mx-2">•</span>
+                                        <i class="fas fa-rupee-sign mr-1"></i> ₹15k-25k/month
+                                    </div>
+                                </div>
+                                <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md">Apply Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Application Form -->
+                <section class="mb-16">
+                    <div class="card p-8">
+                        <h2 class="text-2xl font-bold mb-6 text-center">Quick Application</h2>
+                        <form class="max-w-2xl mx-auto space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Full Name *</label>
+                                    <input type="text" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="form-label">Email Address *</label>
+                                    <input type="email" class="form-input" required>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="form-label">Phone Number *</label>
+                                    <input type="tel" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label class="form-label">Position Applied For *</label>
+                                    <select class="form-input" required>
+                                        <option value="">Select Position</option>
+                                        <option value="server">Server / Waiter</option>
+                                        <option value="delivery">Delivery Partner</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="form-label">Experience (Years)</label>
+                                <select class="form-input">
+                                    <option value="">Select Experience</option>
+                                    <option value="0-1">0-1 years</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="3-5">3-5 years</option>
+                                    <option value="5+">5+ years</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="form-label">Why do you want to work with us?</label>
+                                <textarea class="form-input h-32" placeholder="Tell us about your motivation..."></textarea>
+                            </div>
+                            <div>
+                                <label class="form-label">Upload Resume</label>
+                                <input type="file" class="form-input" accept=".pdf,.doc,.docx">
+                            </div>
+                            <button type="submit" class="gradient-btn w-full py-3 text-white font-medium rounded-md">
+                                Submit Application
+                            </button>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            
+           <!-- Enhanced Menu Page -->
+<div id="menu-page" class="container mx-auto px-4 py-8" style="display: none;">
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">Our <span class="gold-text">Menu</span></h1>
+        <p class="text-gray-400 text-lg">Discover our authentic Japanese ramen collection and delicious sides</p>
+    </div>
+    
+    <!-- Menu Categories -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button class="menu-category-btn bg-yellow-500 text-white px-6 py-2 rounded-full" data-category="all">All Items</button>
+        <button class="menu-category-btn bg-gray-800 text-gray-300 px-6 py-2 rounded-full hover:bg-gray-700" data-category="ramen">🍜 Ramen</button>
+        <button class="menu-category-btn bg-gray-800 text-gray-300 px-6 py-2 rounded-full hover:bg-gray-700" data-category="sides">🥟 Side Dishes</button>
+        <button class="menu-category-btn bg-gray-800 text-gray-300 px-6 py-2 rounded-full hover:bg-gray-700" data-category="desserts">🍨 Desserts</button>
+        <button class="menu-category-btn bg-gray-800 text-gray-300 px-6 py-2 rounded-full hover:bg-gray-700" data-category="beverages">🥤 Beverages</button>
+    </div>
+
+    <!-- Search and Filter -->
+    <div class="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
+        <div class="flex items-center space-x-4">
+            <div class="relative mb-6">
+                <input type="text" class="form-input pl-17 pr-8 py-6" placeholder="Search menu items...">
+              
+            </div>
+        </div>
+        <div class="flex items-center space-x-4">
+            <select class="form-input">
+                <option value="">Sort by</option>
+                <option value="popular">Most Popular</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Highest Rated</option>
+            </select>
+            <div class="flex items-center space-x-2">
+                <label class="text-sm">Dietary:</label>
+                <button class="food-tag bg-green-500 text-white">🌱 Veg</button>
+                <button class="food-tag bg-red-500 text-white">🌶️ Spicy</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Menu Items Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="menu-items">
+        <!-- Ramen Items -->
+        <div id="1" class="card p-4 cursor-pointer menu-item" data-category="ramen" onclick="openItemDetails('loadMenuItems')">
+            <div class="flex">
+                <img src="pic 1.webp" alt="Tonkotsu Ramen" class="w-32 h-32 object-cover rounded-lg mr-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="food-tag bg-yellow-500 text-white">🥟 Popular</span>
+                            </div>
+                            <h3 class="text-xl font-medium">Gyoza (6 pcs)</h3>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-lg">₹ 179</div>
+                            <div class="rating-stars text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-gray-400 ml-1">(156)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Pan-fried dumplings filled with pork and vegetables, served with dipping sauce.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-sm text-gray-500">
+                            <span>🕒 12 min</span>
+                            <span>🔥 Mild</span>
+                            <span>🍖 Non-veg</span>
+                        </div>
+                        <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md" onclick="addToCart('Gyoza', 179)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Beverages -->
+        <div id="2" class="card p-4 cursor-pointer menu-item" data-category="beverages"  >
+            <div class="flex">
+                <img src="pic 5.jpg" alt="Matcha Latte" class="w-32 h-32 object-cover rounded-lg mr-4" id="2" onclick="openItemDetails('loadMenuItems')">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="food-tag bg-green-500 text-white">🍵 Premium</span>
+                            </div>
+                            <h3 class="text-xl font-medium">Matcha Latte</h3>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-lg">₹ 149</div>
+                            <div class="rating-stars text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <span class="text-gray-400 ml-1">(67)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Premium Japanese matcha powder with steamed milk, lightly sweetened.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-sm text-gray-500">
+                            <span>🕒 5 min</span>
+                            <span>☕ Hot/Cold</span>
+                            <span>🌱 Vegetarian</span>
+                        </div>
+                        <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md" onclick="addToCart('Matcha Latte', 149)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Desserts -->
+        <div class="card p-4 cursor-pointer menu-item" data-category="desserts">
+            <div class="flex">
+                <img src="pic 6.jpg" alt="Mochi Ice Cream" class="w-32 h-32 object-cover rounded-lg mr-4">
+                <div class="flex-1">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="food-tag bg-pink-500 text-white">🍨 Sweet</span>
+                            </div>
+                            <h3 class="text-xl font-medium">Mochi Ice Cream (3 pcs)</h3>
+                        </div>
+                        <div class="text-right">
+                            <div class="font-bold text-lg">₹ 199</div>
+                            <div class="rating-stars text-sm">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-gray-400 ml-1">(89)</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-3">Traditional Japanese mochi filled with premium ice cream. Flavors: Vanilla, Green Tea, Red Bean.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-sm text-gray-500">
+                            <span>🕒 2 min</span>
+                            <span>❄️ Frozen</span>
+                            <span>🌱 Vegetarian</span>
+                        </div>
+                        <button class="gradient-btn px-4 py-2 text-white font-medium rounded-md" onclick="addToCart('Mochi Ice Cream', 199)">Add to Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Combo Deals Section -->
+    <section class="mt-16 mb-8">
+        <h2 class="text-3xl font-bold text-center mb-8">Combo <span class="gold-text">Deals</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card p-6 border-2 border-yellow-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Ramen + Gyoza Combo</h3>
+                        <span class="food-tag bg-red-500 text-white">💰 Save ₹50</span>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-gray-400 line-through">₹478</div>
+                        <div class="text-2xl font-bold gold-text">₹428</div>
+                    </div>
+                </div>
+                <p class="text-gray-400 mb-4">Any ramen bowl + 6pc Gyoza + Green Tea</p>
+                <button class="gradient-btn w-full py-2 text-white font-medium rounded-md">Order Combo</button>
+            </div>
+            
+            <div class="card p-6 border-2 border-green-500">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Family Pack</h3>
+                        <span class="food-tag bg-green-500 text-white">👨‍👩‍👧‍👦 For 4 People</span>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-gray-400 line-through">₹1,596</div>
+                        <div class="text-2xl font-bold gold-text">₹1,299</div>
+                    </div>
+                </div>
+                <p class="text-gray-400 mb-4">4 Ramen bowls + 2 Gyoza + 2 Side dishes + 4 Beverages</p>
+                <button class="gradient-btn w-full py-2 text-white font-medium rounded-md">Order Family Pack</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Enhanced Item Details Modal -->
+<div id="item-details-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" style="display: none;">
+    <div class="bg-gray-900 rounded-lg max-w-4xl w-full mx-4 overflow-hidden max-h-screen overflow-y-auto">
+        <div class="relative">
+            <img id="modal-image" src="" alt="Ramen" class="w-full h-64 object-cover">
+            <button onclick="closeItemDetails()" class="absolute top-4 right-4 bg-black bg-opacity-50 rounded-full p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="absolute bottom-4 left-4">
+                <button class="bg-black bg-opacity-50 p-2 rounded-full text-white hover:text-red-500">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+        </div>
+        <div class="p-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <div id="modal-tags" class="flex items-center gap-2 mb-2"></div>
+                    <h2 id="modal-title" class="text-2xl font-bold"></h2>
+                    <div id="modal-rating" class="rating-stars mt-2"></div>
+                </div>
+                <div class="text-right">
+                    <div id="modal-price" class="text-2xl font-bold"></div>
+                    <div class="text-sm text-gray-400">🕒 <span id="modal-time">20 min</span></div>
+                </div>
+            </div>
+            <p id="modal-description" class="text-gray-300 mb-6 text-lg"></p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-medium mb-3">Ingredients</h3>
+                    <ul id="modal-ingredients" class="list-disc pl-5 text-gray-300 space-y-1"></ul>
+                    
+                    <h3 class="text-lg font-medium mb-3 mt-6">Nutritional Info</h3>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div class="bg-gray-800 p-3 rounded">
+                            <div class="font-bold">Calories</div>
+                            <div class="text-gray-400">580 kcal</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded">
+                            <div class="font-bold">Protein</div>
+                            <div class="text-gray-400">28g</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded">
+                            <div class="font-bold">Carbs</div>
+                            <div class="text-gray-400">45g</div>
+                        </div>
+                        <div class="bg-gray-800 p-3 rounded">
+                            <div class="font-bold">Fat</div>
+                            <div class="text-gray-400">18g</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-medium mb-3">Customize Your Order</h3>
+                    <div class="space-y-3">
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2">Spice Level</h4>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 bg-green-500 text-white rounded text-sm">Mild</button>
+                                <button class="px-3 py-1 bg-gray-600 text-white rounded text-sm hover:bg-yellow-500">Medium</button>
+                                <button class="px-3 py-1 bg-gray-600 text-white rounded text-sm hover:bg-red-500">Hot</button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2">Add-ons</h4>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-yellow-500 mr-2">
+                                    <span class="text-gray-300">Extra Chashu (+₹50)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-yellow-500 mr-2">
+                                    <span class="text-gray-300">Extra Egg (+₹30)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-yellow-500 mr-2">
+                                    <span class="text-gray-300">Extra Noodles (+₹40)</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" class="form-checkbox h-4 w-4 text-yellow-500 mr-2">
+                                    <span class="text-gray-300">Green Onions (+₹20)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-800 p-4 rounded-lg">
+                            <h4 class="font-medium mb-2">Quantity</h4>
+                            <div class="flex items-center space-x-3">
+                                <button class="bg-gray-600 px-3 py-1 rounded hover:bg-gray-500">-</button>
+                                <span class="text-lg font-bold">1</span>
+                                <button class="bg-gray-600 px-3 py-1 rounded hover:bg-gray-500">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex space-x-4 mt-8">
+                <button id="modal-add-btn" class="gradient-btn flex-1 px-6 py-3 text-white font-medium rounded-md" onclick="addToCartFromModal()">
+                    <i class="fas fa-shopping-cart mr-2"></i> Add to Order - ₹299
+                </button>
+                <button class="border border-gray-600 px-6 py-3 text-white font-medium rounded-md hover:bg-gray-700">
+                    <i class="fas fa-heart mr-2"></i> Save
+                </button>
+            </div>
+            
+            <!-- Reviews Section -->
+            <div class="mt-8 border-t border-gray-700 pt-6">
+                <h3 class="text-lg font-medium mb-4">Customer Reviews</h3>
+                <div class="space-y-4">
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <img src="per 1.jpg" alt="Customer" class="w-8 h-8 rounded-full mr-3">
+                            <div>
+                                <div class="font-medium">Vasundhara</div>
+                                <div class="rating-stars text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm">"Absolutely delicious! The broth was rich and flavorful. Best ramen in Hyderabad!"</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-lg">
+                        <div class="flex items-center mb-2">
+                            <img src="per 3.jpg" alt="Customer" class="w-8 h-8 rounded-full mr-3">
+                            <div>
+                                <div class="font-medium">Priya Singh</div>
+                                <div class="rating-stars text-sm">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm">"Great taste and authentic flavors. The chashu was perfectly cooked. Will definitely order again!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Enhanced Order Page with Better Payment Options -->
+            <div id="order-page" class="container mx-auto px-4 py-8" style="display: none;">
+                <div class="text-center mb-12">
+                    <div class="inline-block bg-red-900 bg-opacity-20 px-3 py-1 rounded-full mb-4">
+                        <span class="text-red-500 text-sm font-medium">🛒 Place Your Order</span>
+                    </div>
+                    <h1 class="text-4xl font-bold mb-4">Order <span class="gold-text">Online</span></h1>
+                    <p class="text-gray-400">Fast delivery • Fresh ingredients • Authentic taste</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Order Items Section -->
+                    <div class="lg:w-2/3">
+                        <!-- Delivery Options -->
+                        <div class="card p-6 mb-6">
+                            <h2 class="text-xl font-bold mb-4">Delivery Options</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <label class="delivery-option border-2 border-yellow-500 bg-yellow-500 bg-opacity-10 p-4 rounded-lg cursor-pointer">
+                                    <input type="radio" name="delivery" value="delivery" class="mr-3" checked>
+                                    <div>
+                                        <div class="font-bold text-yellow-500">🚚 Home Delivery</div>
+                                        <div class="text-sm text-gray-400">30-45 minutes • ₹29 delivery fee</div>
+                                    </div>
+                                </label>
+                                <label class="delivery-option border-2 border-gray-600 p-4 rounded-lg cursor-pointer hover:border-yellow-500">
+                                    <input type="radio" name="delivery" value="pickup" class="mr-3">
+                                    <div>
+                                        <div class="font-bold">🏪 Pickup</div>
+                                        <div class="text-sm text-gray-400">15-20 minutes • No fee</div>
+                                    </div>
+                                </label>
+                                <label class="delivery-option border-2 border-gray-600 p-4 rounded-lg cursor-pointer hover:border-yellow-500">
+                                    <input type="radio" name="delivery" value="dine-in" class="mr-3">
+                                    <div>
+                                        <div class="font-bold">🍽️ Dine In</div>
+                                        <div class="text-sm text-gray-400">Reserve table • No fee</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Address Section -->
+                        <div class="card p-6 mb-6" id="address-section">
+                            <div class="flex justify-between items-center mb-4">
+                                <h2 class="text-xl font-bold">Delivery Address</h2>
+                                <button class="text-yellow-500 text-sm hover:underline">+ Add New Address</button>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <label class="address-option border-2 border-yellow-500 bg-yellow-500 bg-opacity-10 p-4 rounded-lg cursor-pointer block">
+                                    <input type="radio" name="address" value="home" class="mr-3" checked>
+                                    <div class="inline-block">
+                                        <div class="font-bold">🏠 Home</div>
+                                        <div class="text-sm text-gray-400">123 Main Street, Uppal, Hyderabad - 500039</div>
+                                        <div class="text-xs text-green-400 mt-1">✓ Within free delivery zone</div>
+                                    </div>
+                                </label>
+                                
+                                <label class="address-option border-2 border-gray-600 p-4 rounded-lg cursor-pointer block hover:border-yellow-500">
+                                    <input type="radio" name="address" value="office" class="mr-3">
+                                    <div class="inline-block">
+                                        <div class="font-bold">🏢 Office</div>
+                                        <div class="text-sm text-gray-400">A 104 Uppal, Hyderabad - 500039</div>
+                                        <div class="text-xs text-yellow-400 mt-1">⚠ ₹29 delivery fee applies</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Menu Items Selection -->
+                        <div class="card p-6">
+                            <h2 class="text-xl font-bold mb-6">Choose Your Items</h2>
+                            
+                            <!-- Quick Add Popular Items -->
+                            <div class="mb-6">
+                                <h3 class="text-lg font-medium mb-4">🔥 Popular Items</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="card p-4 hover:shadow-lg transition-shadow">
+                                        <div class="flex">
+                                            <img src="pic 9.jpg" alt="Tonkotsu Ramen" class="w-20 h-20 object-cover rounded-lg mr-3">
+                                            <div class="flex-1">
+                                                <h4 class="font-medium mb-1">Tonkotsu Ramen</h4>
+                                                <p class="text-gray-400 text-xs mb-2">Rich pork bone broth...</p>
+                                                <div class="flex justify-between items-center">
+                                                    <span class="font-bold">₹299</span>
+                                                    <button class="gradient-btn px-3 py-1 text-white text-sm font-medium rounded-md" onclick="addToCart('Tonkotsu Ramen', 299)">
+                                                        <i class="fas fa-plus mr-1"></i> Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card p-4 hover:shadow-lg transition-shadow">
+                                        <div class="flex">
+                                            <img src="pic 10.jpg" alt="Gyoza" class="w-20 h-20 object-cover rounded-lg mr-3">
+                                            <div class="flex-1">
+                                                <h4 class="font-medium mb-1">Gyoza (6 pcs)</h4>
+                                                <p class="text-gray-400 text-xs mb-2">Pan-fried dumplings...</p>
+                                                <div class="flex justify-between items-center">
+                                                    <span class="font-bold">₹179</span>
+                                                    <button class="gradient-btn px-3 py-1 text-white text-sm font-medium rounded-md" onclick="addToCart('Gyoza', 179)">
+                                                        <i class="fas fa-plus mr-1"></i> Add
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="text-center mt-4">
+                                    <button onclick="showMenuPage()" class="text-yellow-500 hover:text-yellow-400 text-sm">
+                                        View Full Menu →
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Order Summary & Checkout -->
+                    <div class="lg:w-1/3">
+                        <div class="card p-6 sticky top-6">
+                            <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+                            
+                            <!-- Cart Items -->
+                            <div id="cart-items" class="space-y-4 mb-6">
+                                <div class="text-gray-400 text-center py-8">
+                                    <i class="fas fa-shopping-cart text-4xl mb-4 opacity-50"></i>
+                                    <p>Your cart is empty</p>
+                                    <p class="text-sm">Add items to get started</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Order Timing -->
+                            <div class="bg-gray-800 p-4 rounded-lg mb-6">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="font-medium">⏰ Estimated Delivery</div>
+                                        <div class="text-sm text-gray-400">Today, 7:30 - 8:00 PM</div>
+                                    </div>
+                                    <button class="text-yellow-500 text-sm hover:underline">Change</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Pricing Breakdown -->
+                            <div class="border-t border-gray-700 pt-4 space-y-2 mb-6">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Subtotal</span>
+                                    <span id="subtotal">₹0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">GST (5%)</span>
+                                    <span id="tax">₹0</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Delivery Fee</span>
+                                    <span id="delivery-fee">₹29</span>
+                                </div>
+                                <div class="flex justify-between text-green-400">
+                                    <span>Discount</span>
+                                    <span id="discount">-₹0</span>
+                                </div>
+                                <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-700">
+                                    <span>Total</span>
+                                    <span id="total" class="gold-text">₹29</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Promo Code -->
+                            <div class="mb-6">
+                                <div class="flex">
+                                    <input type="text" class="form-input rounded-r-none flex-1" placeholder="Promo code">
+                                    <button class="bg-gray-700 px-4 rounded-r-md hover:bg-gray-600">Apply</button>
+                                </div>
+                                <div class="mt-2 text-xs">
+                                    <span class="text-green-400">💰 Available: </span>
+                                    <button class="text-yellow-500 hover:underline">FIRST20</button>
+                                    <span class="text-gray-400"> - 20% off first order</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Checkout Button -->
+                            <button class="gradient-btn w-full py-3 text-white font-medium rounded-md mb-4" onclick="showCheckout()">
+                                <i class="fas fa-credit-card mr-2"></i> Proceed to Checkout
+                            </button>
+                            
+                            <!-- Additional Info -->
+                            <div class="text-xs text-gray-400 space-y-1">
+                                <div class="flex items-center">
+                                    <i class="fas fa-shield-alt mr-2 text-green-400"></i>
+                                    <span>100% safe & secure payments</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-undo mr-2 text-blue-400"></i>
+                                    <span>Easy cancellation & refunds</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-headset mr-2 text-yellow-400"></i>
+                                    <span>24/7 customer support</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enhanced Checkout Modal -->
+            <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" style="display: none;">
+                <div class="bg-gray-900 rounded-lg max-w-4xl w-full mx-4 max-h-screen overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold">Secure Checkout</h2>
+                            <button onclick="closeCheckout()" class="text-gray-400 hover:text-white">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Payment Methods -->
+                            <div>
+                                <h3 class="text-lg font-bold mb-4">Choose Payment Method</h3>
+                                
+                                <!-- Payment Options -->
+                                <div class="space-y-4">
+                                    <!-- UPI Payment -->
+                                    <label class="payment-option border-2 border-yellow-500 bg-yellow-500 bg-opacity-10 p-4 rounded-lg cursor-pointer block">
+                                        <input type="radio" name="payment" value="upi" class="mr-3" checked>
+                                        <div class="inline-block">
+                                            <div class="font-bold text-yellow-500">💰 UPI Payment</div>
+                                            <div class="text-sm text-gray-400">Pay using Google Pay, PhonePe, Paytm, etc.</div>
+                                            <div class="flex items-center mt-2 space-x-3">
+                                                <img src="Gpay.jpeg" alt="Google Pay" class="w-6 h-6">
+                                                <img src="phn pay.png" alt="PhonePe" class="w-6 h-6">
+                                                <img src="paytm.webp" alt="Paytm" class="w-6 h-6">
+                                            </div>
+                                        </div>
+                                    </label>
+                                    
+                                    <!-- Credit/Debit Card -->
+                                    <label class="payment-option border-2 border-gray-600 p-4 rounded-lg cursor-pointer block hover:border-yellow-500">
+                                        <input type="radio" name="payment" value="card" class="mr-3">
+                                        <div class="inline-block">
+                                            <div class="font-bold">💳 Credit/Debit Card</div>
+                                            <div class="text-sm text-gray-400">Visa, Mastercard, RuPay accepted</div>
+                                            <div class="flex items-center mt-2 space-x-3">
+                                                <img src="MC card.png" alt="Mastercard" class="w-6 h-6">
+                                                <img src="rupay.jpeg" alt="RuPay" class="w-6 h-6">
+                                            </div>
+                                        </div>
+                                    </label>
+                                    
+                                    <!-- Net Banking -->
+                                    <label class="payment-option border-2 border-gray-600 p-4 rounded-lg cursor-pointer block hover:border-yellow-500">
+                                        <input type="radio" name="payment" value="netbanking" class="mr-3">
+                                        <div class="inline-block">
+                                            <div class="font-bold">🏦 Net Banking</div>
+                                            <div class="text-sm text-gray-400">All major banks supported</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <!-- Wallet -->
+                                    <label class="payment-option border-2 border-gray-600 p-4 rounded-lg cursor-pointer block hover:border-yellow-500">
+                                        <input type="radio" name="payment" value="wallet" class="mr-3">
+                                        <div class="inline-block">
+                                            <div class="font-bold">👛 Digital Wallets</div>
+                                            <div class="text-sm text-gray-400">Amazon Pay, MobiKwik, Freecharge</div>
+                                        </div>
+                                    </label>
+                                    
+                                    <!-- Cash on Delivery -->
+                                    <label class="payment-option border-2 border-gray-600 p-4 rounded-lg cursor-pointer block hover:border-yellow-500">
+                                        <input type="radio" name="payment" value="cod" class="mr-3">
+                                        <div class="inline-block">
+                                            <div class="font-bold">💵 Cash on Delivery</div>
+                                            <div class="text-sm text-gray-400">Pay when food arrives (+₹5 handling fee)</div>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <!-- Card Details Form -->
+                                <div id="card-form" class="mt-6 space-y-4" style="display: none;">
+                                    <div>
+                                        <label class="form-label">Card Number</label>
+                                        <input type="text" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19">
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="form-label">Expiry Date</label>
+                                            <input type="text" class="form-input" placeholder="MM/YY" maxlength="5">
+                                        </div>
+                                        <div>
+                                            <label class="form-label">CVV</label>
+                                            <input type="text" class="form-input" placeholder="123" maxlength="3">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="form-label">Cardholder Name</label>
+                                        <input type="text" class="form-input" placeholder="John Doe">
+                                    </div>
+                                </div>
+                                
+                                <!-- UPI Form -->
+                                <div id="upi-form" class="mt-6">
+                                    <div>
+                                        <label class="form-label">UPI ID (Optional)</label>
+                                        <input type="text" class="form-input" placeholder="yourname@paytm">
+                                        <p class="text-xs text-gray-400 mt-1">Or scan QR code that will appear after clicking Pay Now</p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Special Instructions -->
+                                <div class="mt-6">
+                                    <label class="form-label">Special Instructions (Optional)</label>
+                                    <textarea class="form-input h-20" placeholder="Any special requests for your order..."></textarea>
+                                </div>
+                            </div>
+                            
+                            <!-- Order Summary -->
+                            <div>
+                                <h3 class="text-lg font-bold mb-4">Order Summary</h3>
+                                
+                                <div class="card p-4 mb-4">
+                                    <div class="flex items-center mb-3">
+                                        <i class="fas fa-clock text-yellow-500 mr-2"></i>
+                                        <span class="font-medium">Estimated Delivery: 30-45 minutes</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i class="fas fa-map-marker-alt text-green-500 mr-2"></i>
+                                        <span class="text-sm text-gray-400">123 Main Street, Uppal, Hyderabad</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Order Items -->
+                                <div class="space-y-3 mb-6">
+                                    <div class="flex justify-between items-center p-3 bg-gray-800 rounded">
+                                        <div>
+                                            <div class="font-medium">Tonkotsu Ramen</div>
+                                            <div class="text-sm text-gray-400">Qty: 1</div>
+                                        </div>
+                                        <span class="font-bold">₹299</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-3 bg-gray-800 rounded">
+                                        <div>
+                                            <div class="font-medium">Gyoza (6 pcs)</div>
+                                            <div class="text-sm text-gray-400">Qty: 1</div>
+                                        </div>
+                                        <span class="font-bold">₹179</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Bill Details -->
+                                <div class="border border-gray-700 rounded-lg p-4 mb-6">
+                                    <h4 class="font-bold mb-3">Bill Details</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between">
+                                            <span>Item Total</span>
+                                            <span>₹478</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>GST (5%)</span>
+                                            <span>₹24</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span>Delivery Fee</span>
+                                            <span>₹29</span>
+                                        </div>
+                                        <div class="flex justify-between text-green-400">
+                                            <span>Discount (FIRST20)</span>
+                                            <span>-₹96</span>
+                                        </div>
+                                        <div class="flex justify-between text-red-400">
+                                            <span>COD Handling</span>
+                                            <span id="cod-fee">₹0</span>
+                                        </div>
+                                        <hr class="border-gray-700">
+                                        <div class="flex justify-between font-bold text-lg">
+                                            <span>Total Amount</span>
+                                            <span class="gold-text">₹435</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Loyalty Points -->
+                                <div class="bg-gradient-to-r from-yellow-900 to-orange-900 p-4 rounded-lg mb-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <div class="font-bold">🌟 Earn Loyalty Points</div>
+                                            <div class="text-sm text-gray-300">You'll earn 43 points from this order</div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-xl font-bold">43 pts</div>
+                                            <div class="text-xs">= ₹4.3</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Contact Information -->
+                                <div class="card p-4 mb-6">
+                                    <h4 class="font-bold mb-3">Contact Information</h4>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <label class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-input" value="+91 9876543210">
+                                        </div>
+                                        <div>
+                                            <label class="form-label">Email (for order updates)</label>
+                                            <input type="email" class="form-input" value="john.doe@email.com">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Terms and Pay Button -->
+                                <div class="space-y-4">
+                                    <label class="flex items-start">
+                                        <input type="checkbox" class="mt-1 mr-2" required>
+                                        <span class="text-sm text-gray-400">I agree to the <a href="#" class="text-yellow-500">Terms & Conditions</a> and <a href="#" class="text-yellow-500">Privacy Policy</a></span>
+                                    </label>
+                                    
+                                    <button class="gradient-btn w-full py-3 text-white font-medium rounded-md text-lg" onclick="processPayment()">
+                                        <i class="fas fa-lock mr-2"></i> Pay Securely - ₹435
+                                    </button>
+                                    
+                                    <div class="text-center text-xs text-gray-400">
+                                        <i class="fas fa-shield-alt mr-1"></i>
+                                        Your payment information is encrypted and secure
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Page -->
+            <div id="cart-page" class="container mx-auto px-4 py-8" style="display: none;">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold mb-4">Your <span class="gold-text">Cart</span></h1>
+                    <p class="text-gray-400">Review your items and proceed to checkout</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="lg:w-2/3">
+                        <div class="card p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-bold">Cart Items</h2>
+                                <button class="text-yellow-500 text-sm hover:underline" onclick="clearCart()">Clear All</button>
+                            </div>
+                            
+                            <div id="cart-details" class="space-y-4">
+                                <!-- Sample cart items -->
+                                <div class="flex items-center p-4 border border-gray-700 rounded-lg">
+                                    <img src="pic 9.jpg" alt="Tonkotsu Ramen" class="w-20 h-20 object-cover rounded-lg mr-4">
+                                    <div class="flex-1">
+                                        <h3 class="font-bold mb-1">Tonkotsu Ramen</h3>
+                                        <p class="text-gray-400 text-sm mb-2">Rich pork bone broth with chashu</p>
+                                        <div class="flex items-center space-x-4">
+                                            <div class="flex items-center border border-gray-600 rounded">
+                                                <button class="px-3 py-1 hover:bg-gray-700">-</button>
+                                                <span class="px-3 py-1">1</span>
+                                                <button class="px-3 py-1 hover:bg-gray-700">+</button>
+                                            </div>
+                                            <span class="font-bold">₹299</span>
+                                        </div>
+                                    </div>
+                                    <button class="text-red-500 hover:text-red-400 ml-4">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="flex items-center p-4 border border-gray-700 rounded-lg">
+                                    <img src="pic 10.jpg" alt="Gyoza" class="w-20 h-20 object-cover rounded-lg mr-4">
+                                    <div class="flex-1">
+                                        <h3 class="font-bold mb-1">Gyoza (6 pcs)</h3>
+                                        <p class="text-gray-400 text-sm mb-2">Pan-fried dumplings</p>
+                                        <div class="flex items-center space-x-4">
+                                            <div class="flex items-center border border-gray-600 rounded">
+                                                <button class="px-3 py-1 hover:bg-gray-700">-</button>
+                                                <span class="px-3 py-1">1</span>
+                                                <button class="px-3 py-1 hover:bg-gray-700">+</button>
+                                            </div>
+                                            <span class="font-bold">₹179</span>
+                                        </div>
+                                    </div>
+                                    <button class="text-red-500 hover:text-red-400 ml-4">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Suggested Items -->
+                            <div class="mt-8 border-t border-gray-700 pt-6">
+                                <h3 class="text-lg font-bold mb-4">🎯 Frequently Bought Together</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="card p-4">
+                                        <div class="flex">
+                                            <img src="Green Tea.jpg" alt="Green Tea" class="w-16 h-16 object-cover rounded-lg mr-3">
+                                            <div class="flex-1">
+                                                <h4 class="font-medium mb-1">Green Tea</h4>
+                                                <div class="flex justify-between items-center">
+                                                    <span class="font-bold">₹49</span>
+                                                    <button class="gradient-btn px-3 py-1 text-white text-sm rounded-md">Add</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/3">
+                        <div class="card p-6 sticky top-6">
+                            <h2 class="text-xl font-bold mb-4">Order Summary</h2>
+                            
+                            <!-- Quick Actions -->
+                            <div class="bg-gray-800 p-4 rounded-lg mb-6">
+                                <div class="text-sm font-medium mb-2">🚚 Delivery to</div>
+                                <div class="text-gray-400 text-sm mb-3">123 Main Street, Uppal</div>
+                                <button class="text-yellow-500 text-sm hover:underline">Change Address</button>
+                            </div>
+                            
+                            <div class="space-y-2 mb-6">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Subtotal (2 items)</span>
+                                    <span id="cart-subtotal">₹478</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">GST (5%)</span>
+                                    <span id="cart-tax">₹24</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Delivery Fee</span>
+                                    <span>₹29</span>
+                                </div>
+                                <div class="flex justify-between font-bold text-lg pt-2 border-t border-gray-700">
+                                    <span>Total</span>
+                                    <span id="cart-total" class="gold-text">₹531</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Savings Info -->
+                            <div class="bg-green-900 bg-opacity-20 border border-green-500 rounded-lg p-3 mb-4">
+                                <div class="text-green-400 text-sm">💰 You're saving ₹20 on delivery!</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">Promo Code</label>
+                                <div class="flex">
+                                    <input type="text" class="form-input rounded-r-none flex-1" placeholder="Enter code">
+                                    <button class="bg-gray-700 px-4 rounded-r-md hover:bg-gray-600">Apply</button>
+                                </div>
+                            </div>
+                            
+                            <button class="gradient-btn w-full py-3 text-white font-medium rounded-md mb-4" onclick="showCheckout()">
+                                <i class="fas fa-credit-card mr-2"></i> Proceed to Checkout
+                            </button>
+                            
+                            <button class="border border-gray-600 w-full py-3 text-white font-medium rounded-md hover:bg-gray-700" onclick="showOrderPage()">
+                                <i class="fas fa-plus mr-2"></i> Add More Items
+                            </button>
+                            
+                            <!-- Estimated Delivery Time -->
+                            <div class="text-center mt-4 text-sm text-gray-400">
+                                <i class="fas fa-clock mr-1"></i>
+                                Estimated delivery: 30-45 minutes
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="bg-gray-900 border-t border-gray-800 mt-16 py-12">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                        <div>
+                            <div class="logo mb-4">
+                                <div class="logo-circle">A</div>
+                                <span>Anil's Food Zone</span>
+                            </div>
+                            <p class="text-gray-400 mb-4">Authentic Japanese ramen served in a cozy atmosphere. Experience traditional flavors with a modern twist.</p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-gray-400 hover:text-yellow-500"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-4">Quick Links</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500" onclick="showHomePage()">Home</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500" onclick="showMenuPage()">Menu</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500" onclick="showAboutPage()">About Us</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500" onclick="showLocationPage()">Locations</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500" onclick="showCareersPage()">Careers</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-4">Customer Service</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500">Help & Support</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500">Track Your Order</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500">Cancellation & Refunds</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500">FAQ</a></li>
+                                <li><a href="#" class="text-gray-400 hover:text-yellow-500">Feedback</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-4">Contact Us</h3>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-map-marker-alt text-yellow-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-400">123 Uppal,<br>Hyderabad, Telangana</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-phone text-yellow-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-400">(+91) 9878685848</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-envelope text-yellow-500 mt-1 mr-2"></i>
+                                    <span class="text-gray-400">anilfoodzone@gmail.com</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                        <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Anil's Food Zone. All rights reserved.</p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-gray-400 text-sm hover:text-yellow-500">Privacy Policy</a>
+                            <a href="#" class="text-gray-400 text-sm hover:text-yellow-500">Terms of Service</a>
+                            <a href="#" class="text-gray-400 text-sm hover:text-yellow-500">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    
+    
+    <script src="data.js"></script>
+
+
+</body>
+</html>
